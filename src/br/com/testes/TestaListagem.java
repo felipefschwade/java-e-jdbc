@@ -1,6 +1,9 @@
 package br.com.testes;
 
 import java.sql.Statement;
+
+import br.com.database.Database;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,7 +11,7 @@ import java.sql.SQLException;
 
 public class TestaListagem {
 	public static void main(String[] args) throws SQLException {
-		Connection connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/loja-virtual", "SA", "");
+		Connection connection = Database.getConnection();
 		Statement statement = connection.createStatement();
 		boolean resultado = statement.execute("select * from Produtos");
 		ResultSet resultSet = (statement).getResultSet();
@@ -22,4 +25,5 @@ public class TestaListagem {
 		statement.close();
 		connection.close();
 	}
+
 }
