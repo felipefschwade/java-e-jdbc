@@ -20,6 +20,9 @@ public class TestaInsercao {
 	}
 
 	public static void adiciona(String nome, String descricao, PreparedStatement statement) throws SQLException {
+		if (nome.equals("Blueray")) {
+	            throw new IllegalArgumentException("Problema ocorrido");
+	    }
 		statement.setString(1, nome);
 		statement.setString(2, descricao);
 		boolean result = statement.execute();

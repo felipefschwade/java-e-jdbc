@@ -10,7 +10,7 @@ public class TestaRemocao {
 	public static void main(String[] args) throws SQLException {
 		Connection connection = Database.getConnection();
 		Statement stmt = connection.createStatement();
-		stmt.execute("delete from produtos where id > 3");
+		stmt.execute("delete from produtos where id > 9");
 		int count = stmt.getUpdateCount();
         System.out.println(count + " linhas atualizadas");
 		stmt.close();
