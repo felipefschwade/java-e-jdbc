@@ -11,11 +11,16 @@ import br.com.database.Database;
 public class TestaInsercao {
 	public static void main(String[] args) throws SQLException {
 			try (Connection connection = Database.getConnection()) {
-			String sql = "insert into produtos (nome, descricao) values (?, ?)";
-			try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-				adiciona("TV LCD", "32 Polegadas", statement);
-				adiciona("Blueray", "Full HDMI", statement);
-			}
+				connection.setAutoCommit(false);
+				String sql = "insert into produtos (nome, descricao) values (?, ?)";
+				try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+					adiciona("TV LCD", "32 Polegadas", statement);
+					adiciona("Blueray", "Full HDMI", statement);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					System.out.println("Rollback Executado.");
+					connection.rollback();
+				}
 		}
 	}
 
