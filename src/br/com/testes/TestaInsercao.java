@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import br.com.database.Database;
+import br.com.database.ConnectionPool;
 
 public class TestaInsercao {
 	public static void main(String[] args) throws SQLException {
-			try (Connection connection = Database.getConnection()) {
+			try (Connection connection = ConnectionPool.getConnection()) {
 				connection.setAutoCommit(false);
 				String sql = "insert into produtos (nome, descricao) values (?, ?)";
 				try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){

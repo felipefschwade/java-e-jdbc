@@ -2,7 +2,7 @@ package br.com.testes;
 
 import java.sql.Statement;
 
-import br.com.database.Database;
+import br.com.database.ConnectionPool;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class TestaListagem {
 	public static void main(String[] args) throws SQLException {
-		Connection connection = Database.getConnection();
+		Connection connection = ConnectionPool.getConnection();
 		Statement statement = connection.createStatement();
 		boolean resultado = statement.execute("select * from Produtos");
 		ResultSet resultSet = (statement).getResultSet();
